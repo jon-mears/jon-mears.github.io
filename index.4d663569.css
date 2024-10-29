@@ -1,0 +1,108 @@
+#title {
+  border: solid #000;
+  width: 1255px;
+  height: 80px;
+  margin-bottom: 25px;
+  margin-left: 100px;
+}
+
+#parlay-header {
+  text-align: center;
+  color: #000;
+  font-family: Trebuchet MS, Lucida Sans Unicode, Lucida Grande, Lucida Sans, Arial, sans-serif;
+}
+
+#event {
+  float: left;
+  border: solid #000;
+  width: 200px;
+  height: 500px;
+  margin-left: 100px;
+  margin-right: 25px;
+}
+
+#info {
+  height: 250px;
+}
+
+#machine {
+  float: left;
+  margin-right: 25px;
+}
+
+#parlay {
+  border: solid #000;
+  width: 500px;
+  height: 500px;
+}
+
+.row {
+  flex-direction: row;
+  display: flex;
+}
+
+#main-content {
+  margin-bottom: 115px;
+}
+
+#description {
+  margin-right: 25px;
+  font-family: Cambria, Cochin, Georgia, Times, Times New Roman, serif;
+  line-height: 1.5;
+}
+
+#footer {
+  cursor: none;
+  background-color: #f1f1f1;
+  border-radius: 15px;
+  width: 1265px;
+  height: 300px;
+  margin-left: 100px;
+}
+
+#examine {
+  border: dotted #000;
+  border-radius: 15px;
+  max-width: 100%;
+  max-height: 100%;
+  margin-left: 25px;
+  margin-right: 25px;
+  padding: 25px;
+}
+
+.text-block {
+  color: #484848;
+  text-align: left;
+  width: 625px;
+  margin-top: 20px;
+  margin-left: 400px;
+  font-family: Cambria, Cochin, Georgia, Times, Times New Roman, serif;
+  font-size: 18px;
+  line-height: 2;
+}
+
+#message {
+  text-align: center;
+  color: #484848;
+  font-family: Trebuchet MS, Lucida Sans Unicode, Lucida Grande, Lucida Sans, Arial, sans-serif;
+}
+
+#item-table {
+  margin-top: 15px;
+}
+
+.item-slot {
+  cursor: pointer;
+  border: 1px solid #000;
+  width: 50px;
+  height: 50px;
+}
+
+.selected-item-slot {
+  border: 1px solid #ff0 !important;
+}
+
+.item {
+  margin-left: 2px;
+}
+/*# sourceMappingURL=index.4d663569.css.map */
