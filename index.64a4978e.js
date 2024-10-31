@@ -755,8 +755,7 @@ originDoorMesh.scale.set(0.1, 0.1, 0.1);
 originDoorMesh.visible = true;
 scene.add(cubeMesh);
 const light = new _three.SpotLight();
-let leverMesh;
-let leverLoaded = false;
+let leverMesh = null;
 const leverMaterial = new _three.MeshPhongMaterial({
     color: 0x000000,
     specular: 0xFFFFFF
@@ -770,26 +769,22 @@ assetLoader.load(leverUrl.href, (gltf)=>{
     leverMesh.position.set(-0.7, -0.39, -0.5);
     leverMesh.rotation.set(-0.3, Math.PI, 0);
     leverMesh.scale.set(0.4, 0.4, 0.4);
-    leverLoaded = true;
 }, undefined, (error)=>{
     console.error(error);
 });
-let ballMesh;
-let ballLoaded = false;
+let ballMesh = null;
 const ballMaterial = new _three.MeshPhongMaterial({
     color: 0xFF0000,
     shininess: 1000,
     specular: 0xFFFFFF
 });
+scene.add(light);
+light.position.set(-1, 0.5, 0.5);
 assetLoader.load(ballUrl.href, (gltf)=>{
     ballMesh = gltf.scene.getObjectByName("ball");
-    leverMesh.add(ballMesh);
     ballMesh.material = ballMaterial;
     ballMesh.position.set(1.3, 1.8, -1.2);
-    scene.add(light);
     light.target = ballMesh;
-    light.position.set(-1, 0.5, 0.5);
-    ballLoaded = true;
 }, undefined, (error)=>{
     console.error(error);
 });
@@ -914,6 +909,7 @@ function leverUpLoop(deltaTime) {
     }
 }
 function restLoop(deltaTime) {
+    if (leverMesh && ballMesh) leverMesh.add(ballMesh);
     if (inDOMRect(cursorPosition, leverClickArea)) document.body.style.cursor = "pointer";
     else document.body.style.cursor = "default";
     if (inDOMRect(clickStartPosition, leverClickArea) && inDOMRect(clickEndPosition, leverClickArea)) {
