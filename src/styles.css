@@ -1,0 +1,115 @@
+#title {
+    border: solid black;
+    height: 80px; 
+    
+    margin-left: 100px;
+    margin-bottom: 25px;
+
+    width: 1255px;
+}
+
+#parlay-header {
+    text-align: center;
+    color: black;
+    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif
+}
+
+#event {
+    width: 200px;
+    height: 500px;
+
+    margin-left: 100px;
+    margin-right: 25px;
+
+    border: solid black;
+    float: left;
+}
+
+#info {
+    height: 250px;
+}
+
+#machine {
+    margin-right: 25px;
+    float: left;
+}
+
+#parlay {
+    border: solid black;
+    width: 500px;
+    height: 500px;
+}
+
+.row {
+    display: flex;
+    flex-direction: row;
+}
+
+#main-content {
+    margin-bottom: 115px;   
+}
+
+#description {
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    line-height: 1.25;
+    margin-right: 25px;
+    font-size: 14px;
+}
+
+#footer {
+    background-color: rgb(241, 241, 241);
+    width: 1265px;
+    height: 300px;
+    cursor: none;
+    margin-left: 100px;
+}
+
+#examine {
+    margin-left: 25px;
+    margin-right: 25px;
+    border-radius: 15px;
+
+    border: dotted black;
+
+    max-height: 100%;
+    max-width: 100%;
+
+    padding: 25px;
+}
+
+.text-block {
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    font-size: 18px;
+    color: rgb(72, 72, 72);
+    text-align: left;
+    margin-left: 400px;
+    margin-top: 20px;
+    width: 625px;
+    line-height: 2;
+}
+
+#message {
+    text-align: center;
+    color: rgb(72, 72, 72);
+    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif
+}
+
+#item-table {
+    margin-top: 15px;
+}
+
+.item-slot {
+    width: 50px;
+    height: 50px;
+    border: solid black 1px;
+
+    cursor: pointer;
+}
+
+.selected-item-slot {
+    border: solid yellow 1px !important;
+}
+
+.item {
+    margin-left: 2px;
+}
