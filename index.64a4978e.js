@@ -601,19 +601,10 @@ var _gitLogoPng = require("../img/git_logo.png");
 var _gitLogoPngDefault = parcelHelpers.interopDefault(_gitLogoPng);
 var _linkedinLogoPng = require("../img/linkedin_logo.png");
 var _linkedinLogoPngDefault = parcelHelpers.interopDefault(_linkedinLogoPng);
+var _nAPng = require("../img/n-a.png");
+var _nAPngDefault = parcelHelpers.interopDefault(_nAPng);
 const leverUrl = new URL(require("5eabb06bc2a2a945"));
 const ballUrl = new URL(require("a1013886aa1a861d"));
-function itemClick(event) {
-    let itemSlot = event.target;
-    while(itemSlot != null && !itemSlot.classList.contains("item-slot"))itemSlot = itemSlot.parentElement;
-    if (itemSlot != null) {
-        let prevSelectedItem = document.querySelectorAll(".selected-item-slot")[0];
-        prevSelectedItem.classList.remove("selected-item-slot");
-        itemSlot.classList.add("selected-item-slot");
-    }
-}
-let itemSlots = document.querySelectorAll(".item-slot");
-for (let itemSlot of itemSlots)itemSlot.addEventListener("click", itemClick);
 const renderer = new _three.WebGLRenderer();
 const rendererWidth = 500;
 const rendererHeight = 500;
@@ -707,12 +698,51 @@ linkedInImage.width = 45;
 linkedInImage.height = 45;
 linkedInImage.align = "center";
 linkedInImage.alt = "linkedin logo";
-const itemImages = [
-    gitImage,
-    linkedInImage
+gitText = `A black-and-white... dollop. There's some kind of cartoon beast on its face. <br><br> 
+
+What is this? A horrific misprint of the U.S. Mint? A souvenir of a coastal Cthulhu township? The GitHub.com logo? <br><br>
+
+Ah, yes. Click <a href="https://github.com/jon-mears">here</a> to visit Jon's illustrious GitHub page.`;
+linkedInText = `A little blue frisbee. She says "in." <br/> <br/>
+In... what? The air entrapped by field & friends? Your coffers? A global network of professionals? <br/> <br/>
+Ah, YES. Click <a href="https://www.linkedin.com/in/jonathan-mears-050709242/">here</a> to visit Jon's illustrious LinkedIn page.`;
+let itemImageSrcs = {
+    "github": (0, _gitLogoPngDefault.default),
+    "linkedin": (0, _linkedinLogoPngDefault.default),
+    "none": (0, _nAPngDefault.default)
+};
+let itemImages = {
+    "github": gitImage,
+    "linkedin": linkedInImage
+};
+let noneText = "Nothing. <br/><br/> Pull the lever to begin.";
+let itemTexts = {
+    "github": gitText,
+    "linkedin": linkedInText,
+    "none": noneText
+};
+let items = [
+    "github",
+    "linkedin"
 ];
 let itemIndex = 0;
 for(let i = 1; i < toys.length; ++i)toys[i].visible = false;
+function itemClick(event) {
+    let itemSlot = event.target;
+    while(itemSlot != null && !itemSlot.classList.contains("item-slot"))itemSlot = itemSlot.parentElement;
+    if (itemSlot != null) {
+        let prevSelectedItem = document.querySelectorAll(".selected-item-slot")[0];
+        prevSelectedItem.classList.remove("selected-item-slot");
+        itemSlot.classList.add("selected-item-slot");
+        let itemName = itemSlot.getAttribute("data-item");
+        let examineElement = document.getElementById("examine");
+        examineElement.src = itemImageSrcs[itemName];
+        let descriptionElement = document.getElementById("description");
+        descriptionElement.innerHTML = itemTexts[itemName];
+    }
+}
+let itemSlots = document.querySelectorAll(".item-slot");
+for (let itemSlot of itemSlots)itemSlot.addEventListener("click", itemClick);
 const cube = new _three.BoxGeometry();
 const cubeMaterial = new _three.MeshBasicMaterial({
     color: 0xFF0000
@@ -842,7 +872,16 @@ function toyCollectLoop(deltaTime) {
         if (toyIndex < toys.length) {
             toys[toyIndex].visible = false;
             let itemSlots = document.querySelectorAll(".item-slot");
-            itemSlots[itemIndex].appendChild(itemImages[itemIndex]);
+            let curItemSlot = itemSlots[itemIndex];
+            curItemSlot.appendChild(itemImages[items[itemIndex]]);
+            curItemSlot.setAttribute("data-item", items[itemIndex]);
+            if (curItemSlot.classList.contains("selected-item-slot")) {
+                let itemName = curItemSlot.getAttribute("data-item");
+                let examineElement = document.getElementById("examine");
+                examineElement.src = itemImageSrcs[itemName];
+                let descriptionElement = document.getElementById("description");
+                descriptionElement.innerHTML = itemTexts[itemName];
+            }
             itemIndex++;
         }
         fruitMaterial.visible = false;
@@ -897,7 +936,7 @@ function mainLoop() {
 fruitMaterial.visible = false;
 renderer.setAnimationLoop(mainLoop);
 
-},{"three":"ktPTu","../img/jancha_machine.png":"9RV96","../img/7_fruit.png":"bKmAZ","../img/door.png":"fB0Nj","../img/github_toy.png":"DXaQ7","../img/linkedin_toy.png":"evyOW","three/examples/jsm/loaders/GLTFLoader.js":"dVRsF","5eabb06bc2a2a945":"4CH38","a1013886aa1a861d":"iLeTe","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","../img/git_logo.png":"BDgy5","../img/linkedin_logo.png":"5PHVm"}],"ktPTu":[function(require,module,exports) {
+},{"three":"ktPTu","../img/jancha_machine.png":"9RV96","../img/7_fruit.png":"bKmAZ","../img/door.png":"fB0Nj","../img/github_toy.png":"DXaQ7","../img/linkedin_toy.png":"evyOW","three/examples/jsm/loaders/GLTFLoader.js":"dVRsF","../img/git_logo.png":"BDgy5","../img/linkedin_logo.png":"5PHVm","../img/n-a.png":"fJKvV","5eabb06bc2a2a945":"4CH38","a1013886aa1a861d":"iLeTe","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"ktPTu":[function(require,module,exports) {
 /**
  * @license
  * Copyright 2010-2024 Three.js Authors
@@ -35714,18 +35753,21 @@ function mergeGroups(geometry) {
     return resultGeometry;
 }
 
-},{"three":"ktPTu","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"4CH38":[function(require,module,exports) {
-module.exports = require("3c8a0d9f0454a5fc").getBundleURL("e6MYJ") + "lever.68686e40.glb" + "?" + Date.now();
-
-},{"3c8a0d9f0454a5fc":"lgJ39"}],"iLeTe":[function(require,module,exports) {
-module.exports = require("9d5ee5418d3d20ee").getBundleURL("e6MYJ") + "ball.300cbcd9.glb" + "?" + Date.now();
-
-},{"9d5ee5418d3d20ee":"lgJ39"}],"BDgy5":[function(require,module,exports) {
+},{"three":"ktPTu","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"BDgy5":[function(require,module,exports) {
 module.exports = require("4d2dae4964725999").getBundleURL("e6MYJ") + "git_logo.0541f58d.png" + "?" + Date.now();
 
 },{"4d2dae4964725999":"lgJ39"}],"5PHVm":[function(require,module,exports) {
 module.exports = require("1020ba8f156c1cbc").getBundleURL("e6MYJ") + "linkedin_logo.ff97223c.png" + "?" + Date.now();
 
-},{"1020ba8f156c1cbc":"lgJ39"}]},["46PTB","goJYj"], "goJYj", "parcelRequire2041")
+},{"1020ba8f156c1cbc":"lgJ39"}],"fJKvV":[function(require,module,exports) {
+module.exports = require("eeca05ef1971bddf").getBundleURL("e6MYJ") + "n-a.3888652f.png" + "?" + Date.now();
+
+},{"eeca05ef1971bddf":"lgJ39"}],"4CH38":[function(require,module,exports) {
+module.exports = require("3c8a0d9f0454a5fc").getBundleURL("e6MYJ") + "lever.68686e40.glb" + "?" + Date.now();
+
+},{"3c8a0d9f0454a5fc":"lgJ39"}],"iLeTe":[function(require,module,exports) {
+module.exports = require("9d5ee5418d3d20ee").getBundleURL("e6MYJ") + "ball.300cbcd9.glb" + "?" + Date.now();
+
+},{"9d5ee5418d3d20ee":"lgJ39"}]},["46PTB","goJYj"], "goJYj", "parcelRequire2041")
 
 //# sourceMappingURL=index.64a4978e.js.map
