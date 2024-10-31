@@ -48,13 +48,13 @@
 #description {
   margin-right: 25px;
   font-family: Cambria, Cochin, Georgia, Times, Times New Roman, serif;
-  line-height: 1.5;
+  font-size: 14px;
+  line-height: 1.25;
 }
 
 #footer {
   cursor: none;
   background-color: #f1f1f1;
-  border-radius: 15px;
   width: 1265px;
   height: 300px;
   margin-left: 100px;
